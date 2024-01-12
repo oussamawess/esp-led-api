@@ -7,7 +7,8 @@ const [currentState, setCurrentState] = useState(null);
 
 const fetchState = async () => {
 try {
-const response = await fetch('https://buspasstracker1.000webhostapp.com/admin/includes/esp2.php');
+    const response = await fetch('https://buspasstracker1.000webhostapp.com/admin/includes/esp2.php');
+    console.log('Response:', response);
 const data = await response.json();
 
 if (response.ok) {
@@ -22,13 +23,15 @@ console.error('Error fetching state:', error);
 
 const updateState = async (newState) => {
 try {
-const response = await fetch('https://buspasstracker1.000webhostapp.com/admin/includes/esp2.php', {
-method: 'POST',
-headers: {
-'Content-Type': 'application/json',
-},
-body: JSON.stringify({ id: 1, state: newState }),
+    const response = await fetch('https://buspasstracker1.000webhostapp.com/admin/includes/esp2.php', {
+  method: 'POST',
+  mode: 'cors',
+  headers: {
+    'Content-Type': 'application/json',
+  },
+  body: JSON.stringify({ id: 1, state: newState }),
 });
+console.log('POST Response:', response);
 
 const data = await response.json();
 
@@ -45,7 +48,7 @@ console.error('Error updating state:', error);
 
 useEffect(() => {
 fetchState();
-const intervalId = setInterval(fetchState, 500);
+const intervalId = setInterval(fetchState, 10000);
 return () => clearInterval(intervalId);
 }, []);
 
