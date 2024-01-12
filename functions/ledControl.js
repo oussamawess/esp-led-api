@@ -3,15 +3,20 @@
 exports.handler = async (event, context) => {
     try {
       if (event.httpMethod === 'GET') {
+        // Handle GET request
+        const currentState = 1; // Replace with logic to get the actual state
         return {
           statusCode: 200,
-          body: JSON.stringify({ message: 'GET request handled' }),
+          body: JSON.stringify({ id: 1, state: currentState }),
         };
       } else if (event.httpMethod === 'POST') {
+        // Handle POST request
         const data = JSON.parse(event.body);
+        const newState = data.state;
+        // Replace with logic to update the actual state in your database
         return {
           statusCode: 200,
-          body: JSON.stringify({ message: 'POST request handled', data }),
+          body: JSON.stringify({ id: 1, state: newState }),
         };
       } else {
         return {
