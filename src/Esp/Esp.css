@@ -1,0 +1,56 @@
+/* Esp.css */
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    }
+    
+    .container {
+    text-align: center;
+    }
+    
+    .led-state {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 20px;
+    }
+    
+    .on-button,
+    .off-button {
+    font-size: 16px;
+    padding: 12px 24px;
+    margin: 10px;
+    cursor: pointer;
+    border: none;
+    border-radius: 8px;
+    transition: background-color 0.3s, color 0.3s, box-shadow 0.3s;
+    }
+    
+    .on-button {
+    background-color: #4caf50;
+    color: #fff;
+    }
+    
+    .off-button {
+    background-color: #e74c3c;
+    color: #fff;
+    }
+    
+    .on-button:hover,
+    .off-button:hover {
+    filter: brightness(1.2);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    
+    /* Optional: Add some spacing for better visual appeal on smaller screens */
+    @media (max-width: 600px) {
+    .on-button,
+    .off-button {
+    width: 100%;
+    }
+    }
