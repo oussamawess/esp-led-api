@@ -6,9 +6,15 @@ exports.handler = async (event, context) => {
         // Handle GET request
         const currentState = 1; // Replace with logic to get the actual state
         return {
-          statusCode: 200,
-          body: JSON.stringify({ id: 1, state: currentState }),
-        };
+            statusCode: 200,
+            headers: {
+              'Access-Control-Allow-Origin': '*',
+              'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
+              'Access-Control-Allow-Headers': 'Content-Type',
+            },
+            body: JSON.stringify({ id: 1, state: currentState }),
+          };
+          
       } else if (event.httpMethod === 'POST') {
         // Handle POST request
         const data = JSON.parse(event.body);

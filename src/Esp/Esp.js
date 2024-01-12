@@ -8,7 +8,7 @@ const LEDControl = () => {
 
   const fetchState = async () => {
     try {
-      const response = await fetch('/.netlify/functions/ledControl');  // Update URL here
+      const response = await fetch('https://ledcontrol.netlify.app/.netlify/functions/ledControl');  // Update URL here
       console.log('Response:', response);
       const data = await response.json();
 
@@ -24,7 +24,7 @@ const LEDControl = () => {
 
   const updateState = async (newState) => {
     try {
-      const response = await fetch('/.netlify/functions/ledControl', {  // Update URL here
+      const response = await fetch('https://ledcontrol.netlify.app/.netlify/functions/ledControl', {  // Update URL here
         method: 'POST',
         mode: 'cors',
         headers: {
