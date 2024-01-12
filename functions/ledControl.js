@@ -3,13 +3,11 @@
 exports.handler = async (event, context) => {
     try {
       if (event.httpMethod === 'GET') {
-        // Handle GET request
         return {
           statusCode: 200,
           body: JSON.stringify({ message: 'GET request handled' }),
         };
       } else if (event.httpMethod === 'POST') {
-        // Handle POST request
         const data = JSON.parse(event.body);
         return {
           statusCode: 200,
