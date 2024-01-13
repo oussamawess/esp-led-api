@@ -1,30 +1,25 @@
-// LEDControl.jsx
-
 import React, { useState, useEffect } from 'react';
-import './Esp.css'; // Import the CSS file
+import './Esp.css';
 
 const LEDControl = () => {
   const [currentState, setCurrentState] = useState(null);
 
-  const fetchState = async () => {
-    try {
-      const response = await fetch('https://sand-inexpensive-dirt.glitch.me/api/state');  // Update URL here
-      console.log('Response:', response);
-      const data = await response.json();
+  useEffect(() => {
+    const ws = new WebSocket('wss://sand-inexpensive-dirt.glitch.me');  // Update URL here
+    
+    ws.onmessage = (event) => {
+      const data = JSON.parse(event.data);
+      setCurrentState(data.state);
+    };
 
-      if (response.ok) {
-        setCurrentState(data.state);
-      } else {
-        console.error('Error fetching state:', data.message);
-      }
-    } catch (error) {
-      console.error('Error fetching state:', error);
-    }
-  };
+    return () => {
+      ws.close();
+    };
+  }, []);
 
   const updateState = async (newState) => {
     try {
-      const response = await fetch('https://sand-inexpensive-dirt.glitch.me/api/state', {  // Update URL here
+      const response = await fetch('https://sand-inexpensive-dirt.glitch.me/api/state', {
         method: 'POST',
         mode: 'cors',
         headers: {
@@ -32,26 +27,16 @@ const LEDControl = () => {
         },
         body: JSON.stringify({ id: 1, state: newState }),
       });
-      console.log('POST Response:', response);
 
       const data = await response.json();
 
-      if (response.ok) {
-        console.log('State updated successfully:', data.message);
-        fetchState();
-      } else {
+      if (!response.ok) {
         console.error('Error updating state:', data.message);
       }
     } catch (error) {
       console.error('Error updating state:', error);
     }
   };
-
-  useEffect(() => {
-    fetchState();
-    const intervalId = setInterval(fetchState, 500);
-    return () => clearInterval(intervalId);
-  }, []);
 
   return (
     <div className="container">
