@@ -1,8 +1,11 @@
+// LEDControl.jsx
+
 import React, { useState, useEffect } from 'react';
 import './Esp.css';
 
 const LEDControl = () => {
   const [currentState, setCurrentState] = useState(null);
+  const [isOn, setIsOn] = useState(false); // Add state for toggle switch
 
   useEffect(() => {
     const ws = new WebSocket('wss://sand-inexpensive-dirt.glitch.me');  // Update URL here
@@ -18,6 +21,7 @@ const LEDControl = () => {
     ws.onmessage = (event) => {
       const data = JSON.parse(event.data);
       setCurrentState(data.state);
+      setIsOn(data.state === 1); // Update toggle switch state
     };
   
     return () => {
@@ -25,7 +29,6 @@ const LEDControl = () => {
       ws.close();
     };
   }, []);
-  
 
   const updateState = async (newState) => {
     try {
@@ -51,8 +54,13 @@ const LEDControl = () => {
   return (
     <div className="container">
       <h1 className="led-state">LED State: {currentState !== null ? currentState : 'Loading...'}</h1>
-      <button className="on-button" onClick={() => updateState(1)}>ON</button>
-      <button className="off-button" onClick={() => updateState(0)}>OFF</button>
+      <div className="toggle-switch-container">
+        <div className="text-off">OFF</div>
+        <div className={`toggle-switch ${isOn ? 'on' : 'off'}`} onClick={() => updateState(isOn ? 0 : 1)}>
+          <div className="switch"></div>
+        </div>
+        <div className="text-on">ON</div>
+      </div>
     </div>
   );
 };

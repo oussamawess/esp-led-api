@@ -1,13 +1,14 @@
 /* Esp.css */
 body {
     font-family: 'Roboto', sans-serif;
-    background-color: #f0f0f0;
+    background-color: #232323;
     margin: 0;
     padding: 0;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
+
     }
     
     .container {
@@ -16,7 +17,7 @@ body {
     
     .led-state {
     font-size: 24px;
-    color: #333;
+    color: #dedbdb;
     margin-bottom: 20px;
     }
     
@@ -52,5 +53,52 @@ body {
     .on-button,
     .off-button {
     width: 100%;
+
+    
     }
     }
+
+    /* Esp.css */
+
+
+/* ... Your existing styles ... */
+.toggle-switch-container {
+    display: flex;
+    align-items: center;
+  }
+  
+  .text-on,
+  .text-off {
+    flex: 1;
+    text-align: center;
+    font-size: 16px; /* Adjust the font size as needed */
+    font-weight: 700;
+    color: #dedbdb;
+  }
+  
+  .toggle-switch {
+    width: 60px;
+    height: 30px;
+    background-color: #95968e;
+    border-radius: 15px;
+    cursor: pointer;
+    overflow: hidden;
+    position: relative;
+    margin: 0 10px; /* Adjust the margin as needed */
+  }
+  
+  .switch {
+    width: 30px;
+    height: 30px;
+    background-color: #e10d0d;
+    border-radius: 50%;
+    position: absolute;
+    top: 0;
+    transition: transform 0.3s;
+  }
+  
+  .toggle-switch.on .switch {
+    transform: translateX(30px);
+    background-color: #f6ff00;
+
+  }
