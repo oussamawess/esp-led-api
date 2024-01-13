@@ -49,7 +49,7 @@ const LEDControl = () => {
 
   useEffect(() => {
     fetchState();
-    const intervalId = setInterval(fetchState, 50);
+    const intervalId = setInterval(fetchState, 500);
     return () => clearInterval(intervalId);
   }, []);
 
