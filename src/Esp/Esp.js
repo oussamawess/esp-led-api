@@ -6,16 +6,26 @@ const LEDControl = () => {
 
   useEffect(() => {
     const ws = new WebSocket('wss://sand-inexpensive-dirt.glitch.me');  // Update URL here
-    
+  
+    const handlePing = () => {
+      if (ws.readyState === WebSocket.OPEN) {
+        ws.send('ping');
+      }
+    };
+  
+    const pingInterval = setInterval(handlePing, 5000); // Send a ping every 5 seconds
+  
     ws.onmessage = (event) => {
       const data = JSON.parse(event.data);
       setCurrentState(data.state);
     };
-
+  
     return () => {
+      clearInterval(pingInterval);
       ws.close();
     };
   }, []);
+  
 
   const updateState = async (newState) => {
     try {
