@@ -118,3 +118,8 @@ body {
   .toggle-switch.off  {
     background-color: #ff4554;
   }
+
+  .lamp-icon {
+   /* background-color: #d0d70fd4;*/
+    color:yellow;
+  }

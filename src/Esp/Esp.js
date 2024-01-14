@@ -1,6 +1,7 @@
 // LEDControl.jsx
 
 import React, { useState, useEffect } from 'react';
+import { FaLightbulb  } from "react-icons/fa";
 import './Esp.css';
 
 const LEDControl = () => {
@@ -53,6 +54,9 @@ const LEDControl = () => {
 
   return (
     <div className="container">
+     <div className={`lamp-icon ${isOn ? 'on' : 'off'}`} onClick={() => updateState(isOn ? 0 : 1)}>
+        <FaLightbulb  style={{ fontSize: '50px', color: isOn? '#F9D949' : '#B0A695' }} />
+      </div>
       <h1 className="led-state">LED State: {currentState !== null ? currentState : 'Loading...'}</h1>
       <div className="toggle-switch-container">
         <div className="text-off">OFF</div>
