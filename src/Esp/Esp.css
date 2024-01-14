@@ -1,7 +1,7 @@
 /* Esp.css */
 body {
     font-family: 'Roboto', sans-serif;
-    background-color: #232323;
+    background-color: #3b4652;
     margin: 0;
     padding: 0;
     display: flex;
@@ -79,7 +79,7 @@ body {
   .toggle-switch {
     width: 90px;
     height: 45px;
-    background-color: #95968e;
+    background-color: #c9c9c4;
     border-radius: 30px;
     cursor: pointer;
     overflow: hidden;
@@ -89,17 +89,32 @@ body {
   }
   
   .switch {
-    width: 45px;
-    height: 45px;
-    background-color: #e10d0d;
+    width: 40px;
+    height: 40px;
+    background-color: #d0c6c6;
     border-radius: 50%;
     position: absolute;
     top: 0;
     transition: transform 0.3s;
+    margin-top: 2.5px;
   }
   
   .toggle-switch.on .switch {
-    transform: translateX(45px);
-    background-color: #f6ff00;
+    transform: translateX(48px);
+    background-color: #d0c6c6;
 
+  }
+
+  .toggle-switch.off .switch {
+    transform: translateX(2px);
+    background-color: #d0c6c6;
+
+  }
+
+  .toggle-switch.on  {
+    background-color: #2cb457;
+  }
+
+  .toggle-switch.off  {
+    background-color: #ff4554;
   }
